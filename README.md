@@ -4,8 +4,26 @@ Windhawk mod fork: **Windows 11 Notification Center Styler – BetterControl11 U
 
 ## Deliverable
 
-- `windows-11-notification-center-styler-bettercontrol11-unified-v2.wh.cpp` — **current
-  version, use this one.** v2 fixes from on-machine screenshot review:
+- `V1.0 beta.cpp` — **current version, use this one.** Fixes over v2 after on-machine
+  screenshot review:
+  1. *Overlaps removed* — all label-into-card hacks (collapsed text stacks,
+     `Margin=0,-36,0,36`, `Height=80`, `Transform3D` pushes) are gone; tiles use the
+     native layout (icon card + label directly below), so text can never sit on an icon.
+  2. *Uniform radius* — tiles built on the split template but shipped without a chevron
+     page (Airplane mode, Energy saver, Night light, Mobile hotspot, Battery saver)
+     rendered a flat right edge; per-name overrides close them with the same `$R` radius
+     and full border as every other big button. The outer panel rectangles
+     (`RootGrid`, `RootContent`, `ControlCenterRegion`) are forced to `$R` as well.
+  3. *Music card* — outer radius unified with the buttons (`MediaTransportControls` +
+     region at `$R`) and the pill backgrounds behind previous/play/next are removed
+     (transparent, borderless) so the icons sit directly on the opaque card.
+  4. *Slider icons* — brightness/volume header icons keep the centred in-place rotation;
+     the volume L2 button returns to the v1 transform that stayed inside the card.
+  5. Keeps what the v2 screenshot proved right: opaque media fill (`MediaBg`), stitched
+     split tiles with accent checked state, single unclipped tile page, theme-aware
+     `CardFill`/`CardStroke` resources, 60 unique deduplicated targets.
+- `windows-11-notification-center-styler-bettercontrol11-unified-v2.wh.cpp` — v2, kept
+  for reference. v2 fixes from on-machine screenshot review:
   1. *Transparent music card* — `Grid#MediaTransportControlsRegion` now fills with an
      opaque theme-aware backdrop acrylic (`MediaBg@Dark/@Light`), so the media card no
      longer shows the wallpaper.
@@ -73,7 +91,7 @@ the top right, and the compact media card.
 ## Install
 
 1. In Windhawk, open **New mod → Edit mod code** (or import from file) and paste
-   `windows-11-notification-center-styler-bettercontrol11-unified.wh.cpp`.
+   `V1.0 beta.cpp` (current version).
 2. Compile and enable; the BetterControl11 Unified theme is preselected in settings.
 3. Tweak the look via settings → *Style constants* (`R`, `cardBg`, `cardStroke`) or
    *Resource variables* (`CardFill@Dark/@Light`, `CardStroke@Dark/@Light`) without
