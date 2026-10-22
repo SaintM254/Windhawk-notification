@@ -4,8 +4,25 @@ Windhawk mod fork: **Windows 11 Notification Center Styler – BetterControl11 U
 
 ## Deliverable
 
-- `V1.0 beta.cpp` — **current version, use this one.** Fixes over v2 after on-machine
-  screenshot review:
+- `Version 1.0.cpp` — **current version, use this one.** Fixes over V1.0 beta:
+  1. *Split tiles closed again* — the chevron half is opaque with the same state fills
+     and complementary radius/border as the main half, so Wi‑Fi/Bluetooth read as ONE
+     card with the chevron inside (v3's transparent chevron half regressed this).
+  2. *White glyphs on checked tiles* — `Foreground@Checked*` = white on both halves of
+     the tile (Wi‑Fi, Night light); no other icon is touched.
+  3. *Slider icons unclipped* — the brightness/volume header icon rotations carry a
+     small in-group translate (`TranslateTransform X="14"`) that lifts them clear of
+     the card border.
+  4. *Volume-slider crash fixed* — the shell crashed when the volume glyph changed
+     state near the top of the range because the mod overrode `RenderTransform` on the
+     volume slider's `AnimatedIcon` (AnimatedIcon drives its own transform during glyph
+     state transitions). The rotation now sits on the icon's parent ContentPresenter.
+  5. *Glassmorphism* — outer panels (control center, notification center, calendar,
+     media card, toasts) use a backdrop `WindhawkBlur` glass fill
+     (`GlassTint@Dark/#8C17171A`, `@Light`, plus solid `GlassFallback` for battery
+     saver / transparency off) that adapts to the wallpaper; tiles, footer, slider card
+     and all buttons keep their solid fills, so the glass never alters the buttons.
+- `V1.0 beta.cpp` — beta, kept for reference.
   1. *Overlaps removed* — all label-into-card hacks (collapsed text stacks,
      `Margin=0,-36,0,36`, `Height=80`, `Transform3D` pushes) are gone; tiles use the
      native layout (icon card + label directly below), so text can never sit on an icon.
@@ -91,7 +108,7 @@ the top right, and the compact media card.
 ## Install
 
 1. In Windhawk, open **New mod → Edit mod code** (or import from file) and paste
-   `V1.0 beta.cpp` (current version).
+   `Version 1.0.cpp` (current version).
 2. Compile and enable; the BetterControl11 Unified theme is preselected in settings.
 3. Tweak the look via settings → *Style constants* (`R`, `cardBg`, `cardStroke`) or
    *Resource variables* (`CardFill@Dark/@Light`, `CardStroke@Dark/@Light`) without
