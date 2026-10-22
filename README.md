@@ -4,7 +4,30 @@ Windhawk mod fork: **Windows 11 Notification Center Styler – BetterControl11 U
 
 ## Deliverable
 
-- `windows-11-notification-center-styler-bettercontrol11-unified.wh.cpp` — a complete,
+- `windows-11-notification-center-styler-bettercontrol11-unified-v2.wh.cpp` — **current
+  version, use this one.** v2 fixes from on-machine screenshot review:
+  1. *Transparent music card* — `Grid#MediaTransportControlsRegion` now fills with an
+     opaque theme-aware backdrop acrylic (`MediaBg@Dark/@Light`), so the media card no
+     longer shows the wallpaper.
+  2. *Broken Wi‑Fi/Bluetooth tiles* — split tiles are stitched back into ONE closed
+     card: main half gets `$RLeft` radius + `1,1,0,1` border, chevron half `$RRight` +
+     `0,1,1,1` with the same fills (complementary sides ⇒ no seam line), and checked
+     tiles regain the accent fill through `@CommonStates` backgrounds
+     (`Checked`/`CheckedPointerOver`/`CheckedPressed`), so on/off tiles share one palette
+     and every tile has the same shape.
+  3. *Tile size like the original* — `Height=80` + `Margin=0,0,0,-36` on tile buttons and
+     the collapsed-text-stack trick (`Height=0`, `Padding=-48,-8`, `Margin=0,16,0,-16`,
+     title pulled up with `Margin=0,-36,0,36`, status collapsed) put the label back
+     *inside* the card and restore the first version's bigger cards; grid `Height=375`
+     with the pager collapsed keeps all tiles on one unclipped page.
+  4. *Slider icons* — the brightness/volume header icon rotations now set
+     `RenderTransformOrigin=0.5,0.5` (v1 rotated around 0,0, which displaced the icons),
+     so they sit centred under their sliders.
+  5. Everything else keeps the v1 rules: single radius `$R=16` everywhere (plus
+     `ControlCornerRadius`/`OverlayCornerRadius`), closed cards with consistent gaps,
+     theme-aware `CardFill`/`CardStroke` resources, 62 unique deduplicated targets.
+- `windows-11-notification-center-styler-bettercontrol11-unified.wh.cpp` — v1, kept for
+  reference; a complete,
   installable Windhawk mod (engine based on m417z's upstream
   `windows-11-notification-center-styler` v1.7, which is a superset of the 1.5.2 fork
   code this was reviewed from) with the **BetterControl11** theme rebuilt from scratch.
