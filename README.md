@@ -4,27 +4,32 @@ Windhawk mod fork: **Windows 11 Notification Center Styler – BetterControl11 U
 
 ## Deliverable
 
-- `Version 2.0.cpp` — **current version.** Focus: the **Oversimplified & Accentuated**
-  option, rebuilt apple-style from the on-machine screenshot:
-  1. *Entire panel frosted glass* — control center, notification center, calendar, media
-     card and toasts use the backdrop `WindhawkBlur` glass fill (theme-aware
-     `GlassTint`, solid `GlassFallback` for battery saver / transparency off), adapting
-     to the wallpaper.
-  2. *Icons white and scaled down* — tile glyphs 20px, slider/footer header icons 18px,
-     FontIcons 18/16px, chevrons 12px, all forced white on checked and unchecked tiles;
-     tile text white as well.
-  3. *Apple-style rounding* — one generous radius `$R=20` on panel, tiles, footer pills,
-     slider tracks, media card, flyouts and notifications; split tiles stitch into one
-     closed card (complementary radii, no seams, per-name overrides for chevron-less
-     split tiles).
-  4. *Names for every option* — the icon-only hack is gone; each tile shows its title
-     (`TitleText` visible, `StatusText` collapsed).
-  5. Signatures kept: single unclipped page, accent fill on checked tiles, horizontal
-     pill-track sliders at the bottom, battery pill + settings footer, solid button
-     fills on top of the glass.
-  The **BetterControl11** option in this file is byte-identical to `Version 1.0.cpp`
-  (verified by diff); only the default selection changed to
-  `Oversimplified&Accentuated`.
+- `Version 3.0.cpp` — **current version.** The buggy **Densy** option was removed
+  entirely and rebuilt as **Liquid Glass 3.0** (iPhone-style liquid glass):
+  1. *One continuous glass sheet* — control center, notification center, calendar
+     and toasts share a deep backdrop-blur glass fill (BlurAmount 60, saturated
+     theme-aware tint, solid fallback) that adapts to the wallpaper.
+  2. *Circular glass buttons* — every quick-action tile is a 64px fully-round
+     glass circle with a white glyph (accent fill when checked); split tiles get
+     a small 32px chevron circle beside the main circle, so no pill can show a
+     clipped or flat edge and no per-name patches are needed.
+  3. *Now playing enclosed* — the media module is one self-contained glass card
+     (rounded art, white title/artist) with the transport controls redistributed
+     as three equal 44px glass circles.
+  4. *Liquid capsule sliders* — brightness/volume are 12px fully-round capsules
+     with a white fill and hidden thumb; header icons white, centred, unclipped
+     (no transforms anywhere in the theme).
+  5. *Trimmed labels* — one centred line per tile (`MaxLines=1`, character
+     ellipsis), no wrapping or cut-off text.
+  6. *Glass footer* — battery pill and settings circle match the tiles.
+  The **Oversimplified & Accentuated** and **BetterControl11** options in this
+  file are byte-identical to `Version 2.0.cpp` / `Version 1.0.cpp` (verified by
+  diff); the default selection is `Liquid Glass 3.0`.
+- `Version 2.0.cpp` — Oversimplified & Accentuated apple-style rebuild (2.0.1
+  closes the Nearby sharing / Live captions pills), retained unchanged: entire
+  panel frosted glass, white scaled-down icons, `$R=20` apple rounding with
+  stitched split tiles, and a visible name for every option. Its
+  **BetterControl11** option is byte-identical to `Version 1.0.cpp`.
 - `Version 1.0.cpp` — BetterControl11 focus, retained unchanged.
   1. *Split tiles closed again* — the chevron half is opaque with the same state fills
      and complementary radius/border as the main half, so Wi‑Fi/Bluetooth read as ONE
@@ -129,8 +134,8 @@ the top right, and the compact media card.
 ## Install
 
 1. In Windhawk, open **New mod → Edit mod code** (or import from file) and paste
-   `Version 2.0.cpp` (current version; defaults to Oversimplified & Accentuated -
-   switch to BetterControl11 in settings for the Version 1.0 look).
+   `Version 3.0.cpp` (current version; defaults to Liquid Glass 3.0 - switch to
+   Oversimplified&Accentuated or BetterControl11 in settings for the earlier looks).
 2. Compile and enable; the BetterControl11 Unified theme is preselected in settings.
 3. Tweak the look via settings → *Style constants* (`R`, `cardBg`, `cardStroke`) or
    *Resource variables* (`CardFill@Dark/@Light`, `CardStroke@Dark/@Light`) without
