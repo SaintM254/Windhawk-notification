@@ -2,7 +2,7 @@
 // @id              windows-11-notification-center-styler-v2
 // @name            Windows 11 Notification Center Styler - Version 2.0 (Oversimplified & Accentuated)
 // @description     Version 2.0: Oversimplified & Accentuated rebuilt apple-style - full frosted-glass panel, white scaled-down icons, generous uniform rounding and labelled tiles; BetterControl11 option retained exactly as Version 1.0; fork of m417z's Windows 11 Notification Center Styler
-// @version         2.0.0
+// @version         2.0.1
 // @author          SaintM254 (based on m417z)
 // @github          https://github.com/SaintM254/Windhawk-notification
 // @homepage        https://m417z.com/
@@ -1623,6 +1623,16 @@ const Theme g_themeOversimplified_Accentuated = {{
         L"BorderThickness=1",
         L"CornerRadius=$R"}},
     ThemeTargetStyles{L"ControlCenter.PaginatedToggleButton#ToggleButton[AutomationProperties.Name=Battery saver] > Windows.UI.Xaml.Controls.ContentPresenter#ContentPresenter", {
+        L"BorderBrush:=$cardStroke",
+        L"BorderThickness=1",
+        L"CornerRadius=$R"}},
+    // 2.0.1: close the right edge of the remaining chevron-less split tiles
+    // (Nearby sharing, Live captions rendered as clipped/flat-right pills).
+    ThemeTargetStyles{L"ControlCenter.PaginatedToggleButton#ToggleButton[AutomationProperties.Name=Nearby sharing] > Windows.UI.Xaml.Controls.ContentPresenter#ContentPresenter", {
+        L"BorderBrush:=$cardStroke",
+        L"BorderThickness=1",
+        L"CornerRadius=$R"}},
+    ThemeTargetStyles{L"ControlCenter.PaginatedToggleButton#ToggleButton[AutomationProperties.Name=Live captions] > Windows.UI.Xaml.Controls.ContentPresenter#ContentPresenter", {
         L"BorderBrush:=$cardStroke",
         L"BorderThickness=1",
         L"CornerRadius=$R"}},
