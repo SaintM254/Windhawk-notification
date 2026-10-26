@@ -4,7 +4,28 @@ Windhawk mod fork: **Windows 11 Notification Center Styler – BetterControl11 U
 
 ## Deliverable
 
-- `Version 1.0.cpp` — **current version, use this one.** Fixes over V1.0 beta:
+- `Version 2.0.cpp` — **current version.** Focus: the **Oversimplified & Accentuated**
+  option, rebuilt apple-style from the on-machine screenshot:
+  1. *Entire panel frosted glass* — control center, notification center, calendar, media
+     card and toasts use the backdrop `WindhawkBlur` glass fill (theme-aware
+     `GlassTint`, solid `GlassFallback` for battery saver / transparency off), adapting
+     to the wallpaper.
+  2. *Icons white and scaled down* — tile glyphs 20px, slider/footer header icons 18px,
+     FontIcons 18/16px, chevrons 12px, all forced white on checked and unchecked tiles;
+     tile text white as well.
+  3. *Apple-style rounding* — one generous radius `$R=20` on panel, tiles, footer pills,
+     slider tracks, media card, flyouts and notifications; split tiles stitch into one
+     closed card (complementary radii, no seams, per-name overrides for chevron-less
+     split tiles).
+  4. *Names for every option* — the icon-only hack is gone; each tile shows its title
+     (`TitleText` visible, `StatusText` collapsed).
+  5. Signatures kept: single unclipped page, accent fill on checked tiles, horizontal
+     pill-track sliders at the bottom, battery pill + settings footer, solid button
+     fills on top of the glass.
+  The **BetterControl11** option in this file is byte-identical to `Version 1.0.cpp`
+  (verified by diff); only the default selection changed to
+  `Oversimplified&Accentuated`.
+- `Version 1.0.cpp` — BetterControl11 focus, retained unchanged.
   1. *Split tiles closed again* — the chevron half is opaque with the same state fills
      and complementary radius/border as the main half, so Wi‑Fi/Bluetooth read as ONE
      card with the chevron inside (v3's transparent chevron half regressed this).
@@ -108,7 +129,8 @@ the top right, and the compact media card.
 ## Install
 
 1. In Windhawk, open **New mod → Edit mod code** (or import from file) and paste
-   `Version 1.0.cpp` (current version).
+   `Version 2.0.cpp` (current version; defaults to Oversimplified & Accentuated -
+   switch to BetterControl11 in settings for the Version 1.0 look).
 2. Compile and enable; the BetterControl11 Unified theme is preselected in settings.
 3. Tweak the look via settings → *Style constants* (`R`, `cardBg`, `cardStroke`) or
    *Resource variables* (`CardFill@Dark/@Light`, `CardStroke@Dark/@Light`) without
