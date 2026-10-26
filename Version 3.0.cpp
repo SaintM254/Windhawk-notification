@@ -2,7 +2,7 @@
 // @id              windows-11-notification-center-styler-v3
 // @name            Windows 11 Notification Center Styler - Version 3.0 (Liquid Glass 3.0)
 // @description     Version 3.0: Densy removed and rebuilt as Liquid Glass 3.0 - iPhone-style liquid glass with circular glass buttons, an enclosed now-playing module, capsule sliders and trimmed labels; Oversimplified & Accentuated and BetterControl11 options retained exactly; fork of m417z's Windows 11 Notification Center Styler
-// @version         3.0.1
+// @version         3.0.2
 // @author          SaintM254 (based on m417z)
 // @github          https://github.com/SaintM254/Windhawk-notification
 // @homepage        https://m417z.com/
@@ -3306,10 +3306,30 @@ const Theme g_themeLiquidGlass3 = {{
     ThemeTargetStyles{L"ControlCenter.PaginatedGridView > Grid", {
         L"BorderThickness=0"}},
 
+    // 3.0.2: the tile button templates paint their own checked fill (a rounded
+    // square) behind the content - transparent + full-round on every direct
+    // template child so only true circles remain.
+    ThemeTargetStyles{L"ControlCenter.PaginatedToggleButton#ToggleButton@CommonStates > *", {
+        L"Background@Normal:=$transparent",
+        L"Background@PointerOver:=$transparent",
+        L"Background@Pressed:=$transparent",
+        L"Background@Checked:=$transparent",
+        L"Background@CheckedPointerOver:=$transparent",
+        L"Background@CheckedPressed:=$transparent",
+        L"CornerRadius=$circle"}},
+    ThemeTargetStyles{L"ControlCenter.PaginatedToggleButton#SplitL2Button@CommonStates > *", {
+        L"Background@Normal:=$transparent",
+        L"Background@PointerOver:=$transparent",
+        L"Background@Pressed:=$transparent",
+        L"Background@Checked:=$transparent",
+        L"Background@CheckedPointerOver:=$transparent",
+        L"Background@CheckedPressed:=$transparent",
+        L"CornerRadius=$circle"}},
+
     // ---- Tiles: circular glass buttons (split template main half) ----
     ThemeTargetStyles{L"ControlCenter.PaginatedGridView > * > Grid > Grid > ControlCenter.PaginatedToggleButton#ToggleButton > Windows.UI.Xaml.Controls.ContentPresenter#ContentPresenter@CommonStates", {
-        L"Width=64",
-        L"Height=64",
+        L"Width=48",
+        L"Height=48",
         L"HorizontalAlignment=1",
         L"VerticalAlignment=1",
         L"Background@Normal:=$circleBg",
@@ -3324,8 +3344,8 @@ const Theme g_themeLiquidGlass3 = {{
         L"CornerRadius=$circle"}},
     // ---- Tiles: circular glass buttons (regular template) ----
     ThemeTargetStyles{L"ControlCenter.PaginatedGridView > * > Windows.UI.Xaml.Controls.ContentPresenter > Windows.UI.Xaml.Controls.Grid > ControlCenter.PaginatedToggleButton#ToggleButton > Windows.UI.Xaml.Controls.ContentPresenter#ContentPresenter@CommonStates", {
-        L"Width=64",
-        L"Height=64",
+        L"Width=48",
+        L"Height=48",
         L"HorizontalAlignment=1",
         L"VerticalAlignment=1",
         L"Background@Normal:=$circleBg",
@@ -3340,10 +3360,12 @@ const Theme g_themeLiquidGlass3 = {{
         L"CornerRadius=$circle"}},
     // ---- Split tiles: small chevron circle beside the main circle ----
     ThemeTargetStyles{L"ControlCenter.PaginatedToggleButton#SplitL2Button", {
-        L"VerticalAlignment=1"}},
+        L"VerticalAlignment=1",
+        L"HorizontalAlignment=0",
+        L"Margin=-16,0,0,0"}},
     ThemeTargetStyles{L"ControlCenter.PaginatedToggleButton#SplitL2Button > ContentPresenter@CommonStates", {
-        L"Width=32",
-        L"Height=32",
+        L"Width=24",
+        L"Height=24",
         L"HorizontalAlignment=1",
         L"VerticalAlignment=1",
         L"Background@Normal:=$circleBg",
@@ -3393,14 +3415,14 @@ const Theme g_themeLiquidGlass3 = {{
     // ---- Glyphs: white, sized for the circles ----
     ThemeTargetStyles{L"ControlCenter.PaginatedGridView > * > Microsoft.UI.Xaml.Controls.AnimatedIcon", {
         L"Foreground:=<SolidColorBrush Color=\"White\"/>",
-        L"Height=22",
-        L"Width=22"}},
+        L"Height=20",
+        L"Width=20"}},
     ThemeTargetStyles{L"ControlCenter.PaginatedGridView > * > Windows.UI.Xaml.Controls.FontIcon", {
         L"Foreground:=<SolidColorBrush Color=\"White\"/>",
-        L"FontSize=20"}},
+        L"FontSize=18"}},
     ThemeTargetStyles{L"ControlCenter.PaginatedToggleButton#SplitL2Button > * > Windows.UI.Xaml.Controls.FontIcon", {
         L"Foreground:=<SolidColorBrush Color=\"White\"/>",
-        L"FontSize=12"}},
+        L"FontSize=10"}},
 
     // ---- Liquid sliders: thick glass capsules, white fill, no thumb ----
     ThemeTargetStyles{L"Microsoft.UI.Xaml.Controls.AnimatedIcon#BrightnessPlayer", {
@@ -3416,7 +3438,7 @@ const Theme g_themeLiquidGlass3 = {{
         L"FontSize=16"}},
     // 3.0.1: shorter sliders leave room for the icons beside them.
     ThemeTargetStyles{L"ContentControl#SlidersGroup Windows.UI.Xaml.Controls.Slider", {
-        L"Width=400",
+        L"Width=320",
         L"HorizontalAlignment=0"}},
     ThemeTargetStyles{L"Rectangle#HorizontalTrackRect", {
         L"Fill:=$capsuleTrack",
