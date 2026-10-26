@@ -2,7 +2,7 @@
 // @id              windows-11-notification-center-styler-v3
 // @name            Windows 11 Notification Center Styler - Version 3.0 (Liquid Glass 3.0)
 // @description     Version 3.0: Densy removed and rebuilt as Liquid Glass 3.0 - iPhone-style liquid glass with circular glass buttons, an enclosed now-playing module, capsule sliders and trimmed labels; Oversimplified & Accentuated and BetterControl11 options retained exactly; fork of m417z's Windows 11 Notification Center Styler
-// @version         3.0.2
+// @version         3.0.3
 // @author          SaintM254 (based on m417z)
 // @github          https://github.com/SaintM254/Windhawk-notification
 // @homepage        https://m417z.com/
@@ -3328,8 +3328,8 @@ const Theme g_themeLiquidGlass3 = {{
 
     // ---- Tiles: circular glass buttons (split template main half) ----
     ThemeTargetStyles{L"ControlCenter.PaginatedGridView > * > Grid > Grid > ControlCenter.PaginatedToggleButton#ToggleButton > Windows.UI.Xaml.Controls.ContentPresenter#ContentPresenter@CommonStates", {
-        L"Width=48",
-        L"Height=48",
+        L"Width=52",
+        L"Height=52",
         L"HorizontalAlignment=1",
         L"VerticalAlignment=1",
         L"Background@Normal:=$circleBg",
@@ -3344,8 +3344,8 @@ const Theme g_themeLiquidGlass3 = {{
         L"CornerRadius=$circle"}},
     // ---- Tiles: circular glass buttons (regular template) ----
     ThemeTargetStyles{L"ControlCenter.PaginatedGridView > * > Windows.UI.Xaml.Controls.ContentPresenter > Windows.UI.Xaml.Controls.Grid > ControlCenter.PaginatedToggleButton#ToggleButton > Windows.UI.Xaml.Controls.ContentPresenter#ContentPresenter@CommonStates", {
-        L"Width=48",
-        L"Height=48",
+        L"Width=52",
+        L"Height=52",
         L"HorizontalAlignment=1",
         L"VerticalAlignment=1",
         L"Background@Normal:=$circleBg",
@@ -3359,24 +3359,26 @@ const Theme g_themeLiquidGlass3 = {{
         L"BorderThickness=1",
         L"CornerRadius=$circle"}},
     // ---- Split tiles: small chevron circle beside the main circle ----
+    // 3.0.3: the chevron of split tiles (Wi-Fi, Bluetooth) is a SIBLING button
+    // in the shell template - pull it inside the main circle so the '>' sits
+    // in the circle exactly like Accessibility / Cast / Project.
     ThemeTargetStyles{L"ControlCenter.PaginatedToggleButton#SplitL2Button", {
         L"VerticalAlignment=1",
         L"HorizontalAlignment=0",
-        L"Margin=-16,0,0,0"}},
+        L"Margin=-43,0,0,0"}},
     ThemeTargetStyles{L"ControlCenter.PaginatedToggleButton#SplitL2Button > ContentPresenter@CommonStates", {
-        L"Width=24",
-        L"Height=24",
+        L"Width=26",
+        L"Height=26",
         L"HorizontalAlignment=1",
         L"VerticalAlignment=1",
-        L"Background@Normal:=$circleBg",
-        L"Background@PointerOver:=$circleBgHover",
-        L"Background@Pressed:=$circleBgHover",
-        L"Background@Checked:=$accentBg",
-        L"Background@CheckedPointerOver:=$accentBgHover",
-        L"Background@CheckedPressed:=$accentBgHover",
+        L"Background@Normal:=$transparent",
+        L"Background@PointerOver:=$transparent",
+        L"Background@Pressed:=$transparent",
+        L"Background@Checked:=$transparent",
+        L"Background@CheckedPointerOver:=$transparent",
+        L"Background@CheckedPressed:=$transparent",
         L"Foreground:=<SolidColorBrush Color=\"White\"/>",
-        L"BorderBrush:=$circleStroke",
-        L"BorderThickness=1",
+        L"BorderThickness=0",
         L"CornerRadius=$circle"}},
 
     // 3.0.1: the tile buttons paint their own checked/hover background (a
@@ -3415,30 +3417,30 @@ const Theme g_themeLiquidGlass3 = {{
     // ---- Glyphs: white, sized for the circles ----
     ThemeTargetStyles{L"ControlCenter.PaginatedGridView > * > Microsoft.UI.Xaml.Controls.AnimatedIcon", {
         L"Foreground:=<SolidColorBrush Color=\"White\"/>",
-        L"Height=20",
-        L"Width=20"}},
+        L"Height=26",
+        L"Width=26"}},
     ThemeTargetStyles{L"ControlCenter.PaginatedGridView > * > Windows.UI.Xaml.Controls.FontIcon", {
         L"Foreground:=<SolidColorBrush Color=\"White\"/>",
-        L"FontSize=18"}},
+        L"FontSize=24"}},
     ThemeTargetStyles{L"ControlCenter.PaginatedToggleButton#SplitL2Button > * > Windows.UI.Xaml.Controls.FontIcon", {
         L"Foreground:=<SolidColorBrush Color=\"White\"/>",
-        L"FontSize=10"}},
+        L"FontSize=14"}},
 
     // ---- Liquid sliders: thick glass capsules, white fill, no thumb ----
     ThemeTargetStyles{L"Microsoft.UI.Xaml.Controls.AnimatedIcon#BrightnessPlayer", {
         L"Foreground:=<SolidColorBrush Color=\"White\"/>",
-        L"Height=18",
-        L"Width=18"}},
+        L"Height=20",
+        L"Width=20"}},
     ThemeTargetStyles{L"ContentControl#QuickActionContentControl > * > Microsoft.UI.Xaml.Controls.AnimatedIcon", {
         L"Foreground:=<SolidColorBrush Color=\"White\"/>",
-        L"Height=18",
-        L"Width=18"}},
+        L"Height=20",
+        L"Width=20"}},
     ThemeTargetStyles{L"ContentControl#SlidersGroup > * > Windows.UI.Xaml.Controls.FontIcon", {
         L"Foreground:=<SolidColorBrush Color=\"White\"/>",
-        L"FontSize=16"}},
+        L"FontSize=18"}},
     // 3.0.1: shorter sliders leave room for the icons beside them.
     ThemeTargetStyles{L"ContentControl#SlidersGroup Windows.UI.Xaml.Controls.Slider", {
-        L"Width=320",
+        L"Width=240",
         L"HorizontalAlignment=0"}},
     ThemeTargetStyles{L"Rectangle#HorizontalTrackRect", {
         L"Fill:=$capsuleTrack",
@@ -3466,11 +3468,11 @@ const Theme g_themeLiquidGlass3 = {{
         L"CornerRadius=$circle"}},
     ThemeTargetStyles{L"Windows.UI.Xaml.Controls.Grid#FooterGrid > * > Microsoft.UI.Xaml.Controls.AnimatedIcon", {
         L"Foreground:=<SolidColorBrush Color=\"White\"/>",
-        L"Height=16",
-        L"Width=16"}},
+        L"Height=18",
+        L"Width=18"}},
     ThemeTargetStyles{L"Windows.UI.Xaml.Controls.Grid#FooterGrid > * > Windows.UI.Xaml.Controls.FontIcon", {
         L"Foreground:=<SolidColorBrush Color=\"White\"/>",
-        L"FontSize=14"}},
+        L"FontSize=16"}},
 
     // ---- Now playing: one enclosed liquid-glass module ----
     ThemeTargetStyles{L"ControlCenter.MediaTransportControls#MediaTransportControls", {
